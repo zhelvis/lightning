@@ -1,0 +1,64 @@
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-selector :--text p, a, small;
+
+:--heading {
+  line-height: 1.25rem;
+  font-family: system-ui;
+}
+
+:--text {
+  line-height: 1.65rem;
+  font-family: system-ui;
+}
+
+:root {
+  --primary-color: blue;
+  --header-text-color: white;
+  --global-horizontal-padding: 10vw;
+  --footer-height: 50px;
+}
+
+a {
+  color: var(--primary-color);
+  border-radius: 0.2rem;
+  text-decoration: none;
+  &:hover {
+    background-color: color-mod(var(--primary-color) a(10%));
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page__header {
+  background-color: var(--primary-color);
+  padding: 1rem var(--global-horizontal-padding);
+}
+
+.header__title {
+  color: var(--header-text-color);
+}
+
+.page__footer {
+  height: var(--footer-height);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page__content {
+  display: block;
+  padding-top: 1rem;
+  padding-left: var(--global-horizontal-padding);
+  padding-right: var(--global-horizontal-padding);
+  padding-bottom: var(--footer-height);
+}

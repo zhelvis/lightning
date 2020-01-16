@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "build": "gulp"
   },
   "repository": {
@@ -31,6 +32,7 @@
     "gulp-postcss": "8.0.0",
     "husky": "4.0.9",
     "lint-staged": "9.5.0",
+    "nodemon": "^2.0.2",
     "postcss-preset-env": "6.7.0",
     "prettier": "1.19.1",
     "vinyl-named": "1.1.0",
@@ -47,5 +49,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
