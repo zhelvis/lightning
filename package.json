@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "dev": "cross-env NODE_ENV=development gulp",
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhelvis/lightning.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vladimir Zhelvis",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zhelvis/lightning/issues"
@@ -24,6 +25,8 @@
     "babel-loader": "8.0.6",
     "browser-sync": "2.26.7",
     "core-js": "3.6.4",
+    "cross-env": "6.0.3",
+    "cssnano": "4.1.10",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.9.0",
     "eslint-loader": "3.0.3",

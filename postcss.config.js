@@ -1,6 +1,9 @@
 const postcssPresetEnv = require('postcss-preset-env')
+const cssnano = require('cssnano')
 
-module.exports = {
+const dev = process.env.NODE_ENV === 'development'
+
+const config = {
   plugins: [
     postcssPresetEnv({
       stage: 0,
@@ -16,3 +19,12 @@ module.exports = {
     }),
   ],
 }
+
+!dev &&
+  config.plugins.push(
+    cssnano({
+      preset: 'default',
+    })
+  )
+
+module.exports = config

@@ -58,6 +58,11 @@ function watchFiles() {
 }
 
 const build = gulp.parallel(css, html, js)
+
+gulp.task('build', build)
+
 const watch = gulp.parallel(watchFiles, browserSync)
 
-exports.default = gulp.series(build, watch)
+gulp.task('watch', watch)
+
+gulp.task('default', gulp.series(build, watch))
