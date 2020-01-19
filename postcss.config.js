@@ -1,7 +1,7 @@
 const postcssPresetEnv = require('postcss-preset-env')
 const cssnano = require('cssnano')
 
-const dev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development'
 
 let config = {
   plugins: [
@@ -20,7 +20,7 @@ let config = {
   ],
 }
 
-!dev &&
+!isDev &&
   config.plugins.push(
     cssnano({
       preset: 'default',

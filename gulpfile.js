@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const webpack = require('webpack-stream')
+const imagemin = require('gulp-imagemin')
 const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
 const plumber = require('gulp-plumber')
@@ -30,10 +31,10 @@ function browserSync(done) {
 
 function css() {
   return gulp
-    .src('./src/*.css')
+    .src('./src/css/*.css')
     .pipe(plumber())
     .pipe(postcss())
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./public/css'))
     .pipe(browsersync.stream())
 }
 
@@ -41,11 +42,11 @@ function css() {
 
 function js() {
   return gulp
-    .src('./src/*.js')
+    .src('./src/js/*.js')
     .pipe(plumber())
     .pipe(named())
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./public/js'))
     .pipe(browsersync.stream())
 }
 
@@ -58,15 +59,31 @@ function html() {
     .pipe(browsersync.stream())
 }
 
-// Watch files
-function watchFiles() {
-  gulp.watch('./src/*.css', css)
-  gulp.watch('./src/*.js', js)
-  gulp.watch('./src/*.html', html)
+// compress images
+
+function img() {
+  return gulp
+    .src('src/img/*')
+    .pipe(plumber())
+    .pipe(imagemin())
+    .pipe(gulp.dest('./public/img'))
 }
 
-const build = gulp.series(cleanUp, gulp.parallel(css, html, js))
+// Watch files
+
+function watchFiles() {
+  gulp.watch('./src/css/*.css', css)
+  gulp.watch('./src/js/*.js', js)
+  gulp.watch('./src/*.html', html)
+  gulp.watch('./src/img/*', img)
+}
+
+// complex behavior
+
+const build = gulp.series(cleanUp, gulp.parallel(css, html, js, img))
 const watch = gulp.parallel(watchFiles, browserSync)
+
+// public tasks
 
 gulp.task('clean', cleanUp)
 gulp.task('build', build)
