@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "gulp clean",
     "dev": "cross-env NODE_ENV=development gulp",
-    "build": "cross-env NODE_ENV=production gulp build"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "eslint-loader": "3.0.3",
     "eslint-plugin-prettier": "3.1.2",
     "gulp": "4.0.2",
+    "gulp-clean": "0.4.0",
     "gulp-plumber": "1.2.1",
     "gulp-postcss": "8.0.0",
     "husky": "4.0.9",

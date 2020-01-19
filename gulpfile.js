@@ -1,10 +1,18 @@
 const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const webpack = require('webpack-stream')
-const webpackConfig = require('./webpack.config.js')
 const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
 const plumber = require('gulp-plumber')
+const clean = require('gulp-clean')
+
+const webpackConfig = require('./webpack.config.js')
+
+// clean public folder
+
+function cleanUp() {
+  return gulp.src('./public', { allowEmpty: true, read: false }).pipe(clean())
+}
 
 // BrowserSync
 
@@ -57,12 +65,11 @@ function watchFiles() {
   gulp.watch('./src/*.html', html)
 }
 
-const build = gulp.parallel(css, html, js)
-
-gulp.task('build', build)
-
+const build = gulp.series(cleanUp, gulp.parallel(css, html, js))
 const watch = gulp.parallel(watchFiles, browserSync)
 
+gulp.task('clean', cleanUp)
+gulp.task('build', build)
 gulp.task('watch', watch)
 
 gulp.task('default', gulp.series(build, watch))
