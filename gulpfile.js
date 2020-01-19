@@ -4,7 +4,6 @@ const webpack = require('webpack-stream')
 const imagemin = require('gulp-imagemin')
 const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
-const plumber = require('gulp-plumber')
 const clean = require('gulp-clean')
 
 const webpackConfig = require('./webpack.config.js')
@@ -32,7 +31,6 @@ function browserSync(done) {
 function css() {
   return gulp
     .src('./src/css/*.css')
-    .pipe(plumber())
     .pipe(postcss())
     .pipe(gulp.dest('./public/css'))
     .pipe(browsersync.stream())
@@ -43,7 +41,6 @@ function css() {
 function js() {
   return gulp
     .src('./src/js/*.js')
-    .pipe(plumber())
     .pipe(named())
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('./public/js'))
@@ -64,7 +61,6 @@ function html() {
 function img() {
   return gulp
     .src('src/img/*')
-    .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest('./public/img'))
     .pipe(browsersync.stream())

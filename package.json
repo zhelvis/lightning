@@ -36,12 +36,13 @@
     "gulp": "4.0.2",
     "gulp-clean": "0.4.0",
     "gulp-imagemin": "7.0.0",
-    "gulp-plumber": "1.2.1",
     "gulp-postcss": "8.0.0",
     "husky": "4.0.9",
     "lint-staged": "9.5.0",
     "postcss-preset-env": "6.7.0",
     "prettier": "1.19.1",
+    "stylelint": "13.0.0",
+    "stylelint-config-recommended": "3.0.0",
     "vinyl-named": "1.1.0",
     "webpack": "4.41.5",
     "webpack-stream": "5.2.1"
@@ -56,5 +57,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^6.13.6",
+    "postcss-reporter": "^6.0.1"
   }
 }

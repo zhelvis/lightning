@@ -1,11 +1,15 @@
-const postcssPresetEnv = require('postcss-preset-env')
+const stylelint = require('stylelint')
+const postCssPresetEnv = require('postcss-preset-env')
+const postCssRepotrter = require('postcss-reporter')
 const cssnano = require('cssnano')
 
 const isDev = process.env.NODE_ENV === 'development'
 
 let config = {
   plugins: [
-    postcssPresetEnv({
+    stylelint(),
+    postCssRepotrter({ clearReportedMessages: true }),
+    postCssPresetEnv({
       stage: 0,
       autoprefixer: { grid: true },
       features: {
