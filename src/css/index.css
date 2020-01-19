@@ -3,12 +3,12 @@
 
 :--heading {
   line-height: 1.25rem;
-  font-family: system-ui;
+  font-family: 'Roboto', sans-serif;
 }
 
 :--text {
   line-height: 1.65rem;
-  font-family: system-ui;
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {

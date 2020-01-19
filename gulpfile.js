@@ -67,6 +67,16 @@ function img() {
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest('./public/img'))
+    .pipe(browsersync.stream())
+}
+
+// replace fonts
+
+function fonts() {
+  return gulp
+    .src('src/fonts/*')
+    .pipe(gulp.dest('./public/fonts'))
+    .pipe(browsersync.stream())
 }
 
 // Watch files
@@ -76,11 +86,12 @@ function watchFiles() {
   gulp.watch('./src/js/*.js', js)
   gulp.watch('./src/*.html', html)
   gulp.watch('./src/img/*', img)
+  gulp.watch('./src/fonts/*', fonts)
 }
 
 // complex behavior
 
-const build = gulp.series(cleanUp, gulp.parallel(css, html, js, img))
+const build = gulp.series(cleanUp, gulp.parallel(fonts, css, html, js, img))
 const watch = gulp.parallel(watchFiles, browserSync)
 
 // public tasks
