@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ en or 'locale' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{ title or 'Default title' }}</title>
+    <meta name="description" content="{{ description or 'Default description' }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body class="page">
+      {% include "header.html" %}
+      <main class="page__content">
+        {% block content %}{% endblock %}
+      </main>
+      {% include "footer.html" %}
+  </body>
+</html>

@@ -1,12 +1,16 @@
+const fs = require('fs')
 const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const webpack = require('webpack-stream')
+const nunjucks = require('gulp-nunjucks-render')
 const imagemin = require('gulp-imagemin')
 const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
 const clean = require('gulp-clean')
 
 const webpackConfig = require('./webpack.config.js')
+
+const siteMetaData = require('./src/siteMetaData.js')
 
 // clean public folder
 
@@ -47,11 +51,17 @@ function js() {
     .pipe(browsersync.stream())
 }
 
-// replace html files
+// render html
 
 function html() {
   return gulp
-    .src('./src/*.html')
+    .src('./src/pages/*.html')
+    .pipe(
+      nunjucks({
+        path: ['./src/templates'],
+        data: siteMetaData,
+      })
+    )
     .pipe(gulp.dest('./public'))
     .pipe(browsersync.stream())
 }
@@ -80,7 +90,7 @@ function fonts() {
 function watchFiles() {
   gulp.watch('./src/css/*.css', css)
   gulp.watch('./src/js/*.js', js)
-  gulp.watch('./src/*.html', html)
+  gulp.watch(['./src/pages/*.html', './src/templates.*.html'], html)
   gulp.watch('./src/img/*', img)
   gulp.watch('./src/fonts/*', fonts)
 }
