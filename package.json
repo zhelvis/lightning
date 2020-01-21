@@ -7,7 +7,8 @@
     "clean": "gulp clean",
     "dev": "cross-env NODE_ENV=development gulp",
     "build": "cross-env NODE_ENV=production gulp build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "serve": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -62,5 +63,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
