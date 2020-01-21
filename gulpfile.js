@@ -92,7 +92,7 @@ function fonts() {
 function watchFiles() {
   gulp.watch('./src/css/*.css', css)
   gulp.watch('./src/js/*.js', js)
-  gulp.watch(['./src/pages/*.html', './src/templates.*.html'], html)
+  gulp.watch(['./src/pages/*.html', './src/templates/*.html'], html)
   gulp.watch('./src/img/*', img)
   gulp.watch('./src/fonts/*', fonts)
 }
