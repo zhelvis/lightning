@@ -35,13 +35,16 @@
     "eslint-plugin-prettier": "3.1.2",
     "gulp": "4.0.2",
     "gulp-clean": "0.4.0",
+    "gulp-htmlmin": "5.0.1",
     "gulp-imagemin": "7.0.0",
     "gulp-nunjucks-render": "2.2.3",
     "gulp-postcss": "8.0.0",
+    "gulp-pretty-html": "2.0.10",
     "husky": "4.0.9",
     "lint-staged": "9.5.0",
     "nunjucks": "3.2.0",
     "postcss-preset-env": "6.7.0",
+    "postcss-reporter": "6.0.1",
     "prettier": "1.19.1",
     "stylelint": "13.0.0",
     "stylelint-config-recommended": "3.0.0",
@@ -59,10 +62,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "dependencies": {
-    "install": "^0.13.0",
-    "npm": "^6.13.6",
-    "postcss-reporter": "^6.0.1"
   }
 }

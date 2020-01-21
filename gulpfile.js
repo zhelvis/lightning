@@ -3,6 +3,8 @@ const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const webpack = require('webpack-stream')
 const nunjucks = require('gulp-nunjucks-render')
+const htmlmin = require('gulp-htmlmin')
+const prettyHtml = require('gulp-pretty-html')
 const imagemin = require('gulp-imagemin')
 const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
@@ -10,7 +12,7 @@ const clean = require('gulp-clean')
 
 const webpackConfig = require('./webpack.config.js')
 
-const siteMetaData = require('./src/siteMetaData.js')
+const isDev = process.env.NODE_ENV === 'development'
 
 // clean public folder
 
@@ -59,9 +61,9 @@ function html() {
     .pipe(
       nunjucks({
         path: ['./src/templates'],
-        data: siteMetaData,
       })
     )
+    .pipe(isDev ? prettyHtml() : htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('./public'))
     .pipe(browsersync.stream())
 }
