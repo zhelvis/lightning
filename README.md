@@ -1,5 +1,7 @@
 # lightning
 
+[Перевод на русский](https://github.com/zhelvis/lightning/blob/master/README.ru.md)
+
 development environment for creating lightweight web pages with modern css feaches
 
 requires to install [NodeJS](https://nodejs.org/en/)
