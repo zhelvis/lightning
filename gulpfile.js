@@ -1,16 +1,11 @@
-const fs = require('fs')
 const gulp = require('gulp')
 const postcss = require('gulp-postcss')
-const webpack = require('webpack-stream')
 const nunjucks = require('gulp-nunjucks-render')
 const htmlmin = require('gulp-htmlmin')
 const prettyHtml = require('gulp-pretty-html')
 const imagemin = require('gulp-imagemin')
-const named = require('vinyl-named')
 const browsersync = require('browser-sync').create()
 const clean = require('gulp-clean')
-
-const webpackConfig = require('./webpack.config.js')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -39,17 +34,6 @@ function css() {
     .src('./src/css/*.css')
     .pipe(postcss())
     .pipe(gulp.dest('./public/css'))
-    .pipe(browsersync.stream())
-}
-
-// build js
-
-function js() {
-  return gulp
-    .src('./src/js/*.js')
-    .pipe(named())
-    .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('./public/js'))
     .pipe(browsersync.stream())
 }
 
@@ -91,7 +75,6 @@ function fonts() {
 
 function watchFiles() {
   gulp.watch('./src/css/*.css', css)
-  gulp.watch('./src/js/*.js', js)
   gulp.watch(['./src/pages/*.html', './src/templates/*.html'], html)
   gulp.watch('./src/img/*', img)
   gulp.watch('./src/fonts/*', fonts)
@@ -99,7 +82,7 @@ function watchFiles() {
 
 // complex behavior
 
-const build = gulp.series(cleanUp, gulp.parallel(fonts, css, html, js, img))
+const build = gulp.series(cleanUp, gulp.parallel(fonts, css, html, img))
 const watch = gulp.parallel(watchFiles, browserSync)
 
 // public tasks
