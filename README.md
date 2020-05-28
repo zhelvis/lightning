@@ -11,4 +11,4 @@ requires to install [NodeJS](https://nodejs.org/en/)
 
 Version with `webpack`: https://github.com/zhelvis/lightning/tree/webpack
 
-But i highly recomend to use [svelte](https://svelte.dev/) instead it
+But i highly recomend to use [react](https://reactjs.org/), [vue](https://vuejs.org/), [angular](https://angular.io/) or [svelte](https://svelte.dev/) instead it
