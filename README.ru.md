@@ -9,4 +9,4 @@
 
 Версия с `webpack`: https://github.com/zhelvis/lightning/tree/webpack
 
-Но я настоятельно рекомендую использовать [svelte](https://svelte.dev/) вместо нее
+Но я настоятельно рекомендую использовать [react](https://reactjs.org/), [vue](https://vuejs.org/), [angular](https://angular.io/) или [svelte](https://svelte.dev/) вместо нее
