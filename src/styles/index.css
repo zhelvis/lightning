@@ -1,12 +1,16 @@
-@custom-selector :--heading h1, h2, h3, h4, h5, h6;
-@custom-selector :--text p, a, small;
-
-:--heading {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.25rem;
   font-family: 'Roboto', sans-serif;
 }
 
-:--text {
+p,
+a,
+small {
   line-height: 1.65rem;
   font-family: 'Roboto', sans-serif;
 }
@@ -22,9 +26,6 @@ a {
   color: var(--primary-color);
   border-radius: 0.2rem;
   text-decoration: none;
-  &:hover {
-    background-color: color-mod(var(--primary-color) a(10%));
-  }
 }
 
 body {
@@ -61,4 +62,11 @@ body {
   padding-left: var(--global-horizontal-padding);
   padding-right: var(--global-horizontal-padding);
   padding-bottom: var(--footer-height);
+}
+
+.kek {
+  display: grid;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, white, black);
 }

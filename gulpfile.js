@@ -1,4 +1,6 @@
 const gulp = require('gulp')
+const sass = require('gulp-sass')
+const Fiber = require('fibers')
 const postcss = require('gulp-postcss')
 const nunjucks = require('gulp-nunjucks-render')
 const htmlmin = require('gulp-htmlmin')
@@ -27,13 +29,16 @@ function browserSync(done) {
   done()
 }
 
-// build css
+// build styles
 
-function css() {
+sass.compiler = require('sass')
+
+function styles() {
   return gulp
-    .src('./src/css/*.css')
+    .src('./src/styles/index.scss')
+    .pipe(sass({ fiber: Fiber }).on('error', sass.logError))
     .pipe(postcss())
-    .pipe(gulp.dest('./public/css'))
+    .pipe(gulp.dest('./public'))
     .pipe(browsersync.stream())
 }
 
@@ -74,7 +79,7 @@ function fonts() {
 // Watch files
 
 function watchFiles() {
-  gulp.watch('./src/css/*.css', css)
+  gulp.watch(['./src/styles/*.css', './src/styles/*.scss'], styles)
   gulp.watch(['./src/pages/*.html', './src/templates/*.html'], html)
   gulp.watch('./src/img/*', img)
   gulp.watch('./src/fonts/*', fonts)
@@ -82,7 +87,7 @@ function watchFiles() {
 
 // complex behavior
 
-const build = gulp.series(cleanUp, gulp.parallel(fonts, css, html, img))
+const build = gulp.series(cleanUp, gulp.parallel(fonts, styles, html, img))
 const watch = gulp.parallel(watchFiles, browserSync)
 
 // public tasks
