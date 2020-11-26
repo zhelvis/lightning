@@ -20,6 +20,9 @@ const config = {
     }),
     ...(process.env.NODE_ENV === 'production'
       ? [
+          require('@fullhuman/postcss-purgecss')({
+            content: ['./src/**/*.html'],
+          }),
           require('cssnano')({
             preset: 'default',
           }),
