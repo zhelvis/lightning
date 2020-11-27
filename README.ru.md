@@ -8,3 +8,4 @@
 - [nunjucks + css]((https://github.com/zhelvis/lightning/tree/master))
 - [nunjucks + scss](https://github.com/zhelvis/lightning/tree/scss)
 - [nunjucks + css + js](https://github.com/zhelvis/lightning/tree/webpack)
+- [nunjucks + scss + js](https://github.com/zhelvis/lightning/tree/scss+js)

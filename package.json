@@ -21,12 +21,20 @@
   },
   "homepage": "https://github.com/zhelvis/lightning#readme",
   "devDependencies": {
+    "@babel/core": "7.12.9",
+    "@babel/preset-env": "7.12.7",
     "@fullhuman/postcss-purgecss": "3.0.0",
     "autoprefixer": "10.0.3",
+    "babel-loader": "8.2.2",
     "browser-sync": "2.26.13",
+    "core-js": "3.8.0",
     "cross-env": "7.0.2",
     "cssnano": "4.1.10",
     "fibers": "5.0.0",
+    "eslint": "7.14.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-webpack-plugin": "2.4.0",
     "gulp": "4.0.2",
     "gulp-clean": "0.4.0",
     "gulp-htmlmin": "5.0.1",
@@ -42,7 +50,10 @@
     "prettier": "2.2.0",
     "sass": "1.29.0",
     "stylelint": "13.8.0",
-    "stylelint-config-recommended": "3.0.0"
+    "stylelint-config-recommended": "3.0.0",
+    "vinyl-named": "1.1.0",
+    "webpack": "5.8.0",
+    "webpack-stream": "6.1.1"
   },
   "husky": {
     "hooks": {
@@ -50,7 +61,7 @@
     }
   },
   "lint-staged": {
-    "*.{html,css,json}": [
+    "*.{html,css,scss,js,json}": [
       "prettier --write"
     ]
   },
