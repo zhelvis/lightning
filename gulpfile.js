@@ -31,7 +31,7 @@ function browserSync(done) {
 
 function css() {
   return gulp
-    .src('./src/css/*.css')
+    .src('./src/css/**/*.css')
     .pipe(postcss())
     .pipe(gulp.dest('./public/css'))
     .pipe(browsersync.stream())
@@ -41,7 +41,7 @@ function css() {
 
 function html() {
   return gulp
-    .src('./src/pages/*.html')
+    .src('./src/pages/**/*.html')
     .pipe(
       nunjucks({
         path: ['./src/templates'],
@@ -56,7 +56,7 @@ function html() {
 
 function img() {
   return gulp
-    .src('src/img/*')
+    .src('src/img/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('./public/img'))
     .pipe(browsersync.stream())
@@ -66,7 +66,7 @@ function img() {
 
 function fonts() {
   return gulp
-    .src('src/fonts/*')
+    .src('src/fonts/**/*')
     .pipe(gulp.dest('./public/fonts'))
     .pipe(browsersync.stream())
 }
@@ -74,10 +74,10 @@ function fonts() {
 // Watch files
 
 function watchFiles() {
-  gulp.watch('./src/css/*.css', css)
-  gulp.watch(['./src/pages/*.html', './src/templates/*.html'], html)
-  gulp.watch('./src/img/*', img)
-  gulp.watch('./src/fonts/*', fonts)
+  gulp.watch('./src/css/**/*.css', css)
+  gulp.watch(['./src/pages/**/*.html', './src/templates/**/*.html'], html)
+  gulp.watch('./src/img/**/*', img)
+  gulp.watch('./src/fonts/**/*', fonts)
 }
 
 // complex behavior
