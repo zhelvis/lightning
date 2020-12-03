@@ -11,6 +11,8 @@ const clean = require('gulp-clean')
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const data = require('./data.json')
+
 // clean public folder
 
 function cleanUp() {
@@ -46,10 +48,11 @@ function styles() {
 
 function html() {
   return gulp
-    .src('./src/pages/*.html')
+    .src('./src/pages/**/*.html')
     .pipe(
       nunjucks({
         path: ['./src/templates'],
+        data,
       })
     )
     .pipe(isDev ? prettyHtml() : htmlmin({ collapseWhitespace: true }))
@@ -61,7 +64,7 @@ function html() {
 
 function img() {
   return gulp
-    .src('src/img/*')
+    .src('src/img/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('./public/img'))
     .pipe(browsersync.stream())
@@ -71,7 +74,7 @@ function img() {
 
 function fonts() {
   return gulp
-    .src('src/fonts/*')
+    .src('src/fonts/**/*')
     .pipe(gulp.dest('./public/fonts'))
     .pipe(browsersync.stream())
 }
@@ -79,10 +82,10 @@ function fonts() {
 // Watch files
 
 function watchFiles() {
-  gulp.watch(['./src/styles/*.css', './src/styles/*.scss'], styles)
-  gulp.watch(['./src/pages/*.html', './src/templates/*.html'], html)
-  gulp.watch('./src/img/*', img)
-  gulp.watch('./src/fonts/*', fonts)
+  gulp.watch('./src/css/**/*.css', styles)
+  gulp.watch(['./src/pages/**/*.html', './src/templates/**/*.html', './data.json'], html)
+  gulp.watch('./src/img/**/*', img)
+  gulp.watch('./src/fonts/**/*', fonts)
 }
 
 // complex behavior

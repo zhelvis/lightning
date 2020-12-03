@@ -1,5 +1,4 @@
 # lightning
-
 Set of development environments for creating lightweight web pages with modern css feaches
 
 > requires to install [NodeJS](https://nodejs.org/en/)
@@ -8,3 +7,4 @@ Set of development environments for creating lightweight web pages with modern c
 - [nunjucks + css](https://github.com/zhelvis/lightning/tree/master)
 - [nunjucks + scss](https://github.com/zhelvis/lightning/tree/scss)
 - [nunjucks + css + js](https://github.com/zhelvis/lightning/tree/webpack)
+- [nunjucks + scss + js](https://github.com/zhelvis/lightning/tree/scss+js)
