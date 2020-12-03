@@ -9,6 +9,8 @@ const clean = require('gulp-clean')
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const data = require('./data.json')
+
 // clean public folder
 
 function cleanUp() {
@@ -45,6 +47,7 @@ function html() {
     .pipe(
       nunjucks({
         path: ['./src/templates'],
+        data,
       })
     )
     .pipe(isDev ? prettyHtml() : htmlmin({ collapseWhitespace: true }))
@@ -75,7 +78,7 @@ function fonts() {
 
 function watchFiles() {
   gulp.watch('./src/css/**/*.css', css)
-  gulp.watch(['./src/pages/**/*.html', './src/templates/**/*.html'], html)
+  gulp.watch(['./src/pages/**/*.html', './src/templates/**/*.html', './data.json'], html)
   gulp.watch('./src/img/**/*', img)
   gulp.watch('./src/fonts/**/*', fonts)
 }
