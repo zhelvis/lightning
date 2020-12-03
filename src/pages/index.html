@@ -1,11 +1,6 @@
-{% set title = "Lightning" %} {% set description = "Lightning site example" %}
-{% extends "layout.html" %} {% block head %}
-<link rel="stylesheet" href="css/fonts.css" />
-<link rel="stylesheet" href="css/index.css" />
-{% endblock %} {% block content %}
+{% extends "layout.html" %} {% block content %}
 <h2>Hi world!</h2>
-<p>This is simple single page example.</p>
+<p>This is simple website example.</p>
+<p><a href="/second">Go to second page</a></p>
 <img alt="Zeus" style="width: 300px; height: auto" src="/img/zeus.png" />
-{% endblock %} {% block scripts %}
-<script src="index.js"></script>
 {% endblock %}
