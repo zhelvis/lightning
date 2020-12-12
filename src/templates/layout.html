@@ -16,6 +16,8 @@
   <body class="page">
     {% include "header.html" %}
     <main class="page__content">{% block content %}{% endblock %}</main>
-    {% include "footer.html" %} {% block scripts %}{% endblock %}
+    {% include "footer.html" %}
+    <script src="/index.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>
