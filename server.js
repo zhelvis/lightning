@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express()
 
-const PORT = 8080
+const { port } = require('./config')
 
 app.use(express.static('public'))
 
-app.listen(PORT, () => {
-  console.log(`app started at port ${PORT}`)
+app.listen(port, () => {
+  console.log(`app started at port ${port}`)
 })
