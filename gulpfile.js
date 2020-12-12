@@ -1,4 +1,6 @@
 const gulp = require('gulp')
+const through2 = require('through2')
+const gulpif = require('gulp-if')
 const postcss = require('gulp-postcss')
 const nunjucks = require('gulp-nunjucks-render')
 const htmlmin = require('gulp-htmlmin')
@@ -10,6 +12,23 @@ const clean = require('gulp-clean')
 const isDev = process.env.NODE_ENV === 'development'
 
 const data = require('./data.json')
+const { static, port } = require('./config')
+
+const resolveOutputHtmlPath = () => through2.obj(function(file, _, cb) {
+
+  if (!file.isBuffer()) return
+  
+  const { basename, stem, extname, path } = file
+
+  if(file.stem === 'index'){
+    cb(null, file)
+    return
+  }
+
+  file.path = `${path.replace(basename, '')}/${stem}/index${extname}`
+
+  cb(null, file);
+})
 
 // clean public folder
 
@@ -24,7 +43,7 @@ function browserSync(done) {
     server: {
       baseDir: './public/',
     },
-    port: 8080,
+    port,
   })
   done()
 }
@@ -50,7 +69,8 @@ function html() {
         data,
       })
     )
-    .pipe(isDev ? prettyHtml() : htmlmin({ collapseWhitespace: true }))
+    .pipe(gulpif(isDev, prettyHtml(), htmlmin({ collapseWhitespace: true })))
+    .pipe(gulpif(static, resolveOutputHtmlPath()))
     .pipe(gulp.dest('./public'))
     .pipe(browsersync.stream())
 }
@@ -60,7 +80,7 @@ function html() {
 function img() {
   return gulp
     .src('src/img/**/*')
-    .pipe(imagemin())
+    .pipe(gulpif(!isDev, imagemin()))
     .pipe(gulp.dest('./public/img'))
     .pipe(browsersync.stream())
 }
